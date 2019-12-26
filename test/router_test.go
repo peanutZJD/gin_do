@@ -8,11 +8,11 @@ import (
 	"testing"
 )
 
-func TestIndexGetRouter(t *testing.T) {
+func TestIndexPostRouter(t *testing.T) {
 	router := initRouter.SetupRouter()
 	w := httptest.NewRecorder()
-	req, _ := http.NewRequest(http.MethodGet, "/", nil)
+	req, _ := http.NewRequest(http.MethodPost, "/post", nil)
 	router.ServeHTTP(w, req)
-	assert.Equal(t, http.StatusOK, w.Code)
-	assert.Equal(t, "hello gin", w.Body.String())
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, "POST", w.Body.String())
 }
